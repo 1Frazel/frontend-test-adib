@@ -1,11 +1,105 @@
+/* General container */
 .App {
-  font-family: sans-serif;
-  text-align: center;
+  font-family: "Avenir Next", sans-serif;
+  text-align: left;
   border: 1px solid black;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 544px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: white;
 }
 
+/* Main image at the top */
 .mainPic {
+  width: 100%;
+  height: 272px;
+  object-fit: cover;
 }
 
+/* Content section below the image */
 .mainContent {
+  padding: 16px;
+  background-color: white;
+}
+
+/* Header container: building icon, title, and psf in one line */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+/* Building icon, title, and address container */
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+/* Building icon size and margin */
+.buildingIcon {
+  width: 48px;
+  height: 48px;
+  margin-right: 8px;
+}
+
+/* Title */
+.title {
+  font-size: 23px;
+  font-weight: 600;  /* Demi Bold */
+  color: #2a2e43;
+  margin: 0;
+}
+
+/* Address, placed below the title */
+.subdetails {
+  font-size: 14px;
+  font-weight: 400;  /* Regular */
+  color: #6b6b6b;
+  margin-top: 4px;
+}
+
+/* Right side: psf */
+.psf {
+  font-size: 19px;
+  font-weight: 600;  /* Demi Bold */
+  color: #2a2e43;
+  margin: 0;
+  text-align: right;
+}
+
+/* Subprice label, placed below psf */
+.subprice_label {
+  font-size: 14px;
+  font-weight: 400;  /* Regular */
+  color: #6b6b6b;
+  margin-top: 4px;
+  text-align: right;
+}
+
+/* Brief description below the header */
+.brief_desc {
+  font-size: 16px;
+  font-weight: 400;  /* Regular */
+  color: #6b6b6b;
+  margin-top: 10px;
+}
+
+/* "See description" button */
+button {
+  background-color: transparent;
+  border: none;
+  color: #2979ff;
+  font-weight: 600;  /* Demi bold */
+  text-decoration: underline;
+  font-size: 16px;  /* Font size 16px */
+  cursor: pointer;
+  margin-top: 8px;
+  margin-left: auto;
+}
+
+/* To make the App height dynamic */
+.App {
+  height: auto;
 }
