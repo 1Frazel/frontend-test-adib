@@ -1,10 +1,10 @@
 Typography font type &size:
 
 LAUNCHING SOON | Demi Bold | 15
-Forett At Bukit Timah | Demi Bold | 23
-$12313 - $111 psf | Demi Bold | 19
-Prices from $11212 | Regular | 14
+{title} | Demi Bold | 23
+{psf} | Demi Bold | 19
+{subprice_label} | Regular | 14
 {address} | Regular | 14
-Condo . 2021 . Freehold | Regular | 16
-231 units . 1, 2, 3, 4 bedrooms | Regular | 16
+{project_type} · {year} · {ownership_type} | Regular | 16
+{availabilities_label} | Regular | 16
 See description | Demi bold | 16
