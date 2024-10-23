@@ -7,8 +7,8 @@ My name is M. Adib Aulia Nurkhafif and you can call me Adib, first of all thank 
 Here is my answers based on all the challenge questions!
 
 ## Submission Links:
-CodeSandbox: my codesandbox fork
-Github: my github fork repository
+[CodeSandbox](https://codesandbox.io/p/sandbox/frontend-test-adib-twy6sx)
+[Github](https://github.com/1Frazel/frontend-test-adib)
 
 ## Questions
 
