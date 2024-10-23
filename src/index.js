@@ -4,15 +4,15 @@ import App from "./App";
 
 const rootElement = document.getElementById("root");
 const store = {
-  pic: "https://images.prismic.io/99-content/dc1594fb-f413-44ff-b8b5-c3ba6cd539cd_vbWkNuxt2hjgidVttoMRDX.jpg?auto=compress,format&w=544&q=272",
+  pic: "https://images.prismic.io/99-content/dc1594fb-f413-44ff-b8b5-c3ba6cd539cd_vbWkNuxt2hjgidVttoMRDX.jpg?auto=compress,format&w=720&q=50",
   building_icon: "/building-icon.svg",
   title: "Forett At Bukit Timah",
   address: "70 Anchorvale Crescent · D21",
   project_type: "Condo",
   year: 2021,
   ownership_type: "Freehold",
-  psf_min: 2609,
-  psf_max: 3043,
+  psf_min: '2,609',
+  psf_max: '3,043',
   subprice_label: "Prices from $1.99M",
   availabilities_label: "231 units · 1, 2, 3, 4 bedrooms",
   description: `Phone number: 8234 5678

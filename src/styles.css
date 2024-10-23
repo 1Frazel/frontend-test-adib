@@ -1,5 +1,7 @@
+
 /* General container */
 .App {
+  position: relative;
   font-family: "Avenir Next", sans-serif;
   text-align: left;
   border: 1px solid black;
@@ -10,12 +12,114 @@
   background-color: white;
 }
 
-/* Main image at the top */
-.mainPic {
+/* Ribbon styling */
+.ribbon {
+  position: absolute;
+  top: 10px;
+  left: 0px;
+  background-color: #FF72B6;
+  color: white;
+  padding: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 1;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.ribbon::after {
+  content: "";
+  position: absolute;
+  right: -9.5px;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-top: 13px solid transparent;
+  border-bottom: 13px solid transparent;
+  border-left: 10px solid #FF72B6;
+}
+
+/* Carousel container holding the image and hover effect */
+.carousel-container {
+  position: relative;
   width: 100%;
   height: 272px;
-  object-fit: cover;
+  overflow: hidden;
 }
+
+/* The main image */
+.mainPic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  width: 100%;
+}
+
+/* Hover overlay effect: left and right fading black gradient */
+.carousel-container::before, 
+.carousel-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 50px;
+  height: 100%;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-container::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent);
+  opacity: 0;
+}
+
+.carousel-container::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.5), transparent);
+  opacity: 0;
+}
+
+/* Arrow */
+.arrow {
+  position: absolute;
+  top: 50%;
+  margin-left: 20px;
+  margin-right: 20px;
+  border: solid white;
+  border-width: 0 5px 5px 0;
+  border-radius: 4px;
+  display: inline-block;
+  transform: translateY(-50%);
+  z-index: 3;
+  padding: 10px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Left arrow */
+.left-arrow {
+  left: 10px;
+  transform: translateY(-50%) rotate(135deg); /* Use translateY and rotate */
+  -webkit-transform: translateY(-50%) rotate(135deg);
+}
+
+/* Right arrow */
+.right-arrow {
+  right: 10px;
+  transform: translateY(-50%) rotate(-45deg); /* Use translateY and rotate */
+  -webkit-transform: translateY(-50%) rotate(-45deg);
+}
+
+
+/* Show fading effect and arrows on hover */
+.carousel-container:hover::before,
+.carousel-container:hover::after,
+.carousel-container:hover .arrow {
+  opacity: 1;
+}
+
 
 /* Content section below the image */
 .mainContent {
@@ -40,6 +144,11 @@
   align-items: center;
 }
 
+/* Hiding the header-right for mobile media queries */
+.header-right-mobile {
+  display: none;
+}
+
 /* Building icon size and margin */
 .buildingIcon {
   width: 40px;
@@ -51,7 +160,7 @@
 /* Title */
 .title {
   font-size: 23px;
-  font-weight: 600;  /* Demi Bold */
+  font-weight: 600;
   color: #1A2258;
   margin: 0;
 }
@@ -59,7 +168,7 @@
 /* Address, placed below the title */
 .subdetails {
   font-size: 14px;
-  font-weight: 400;  /* Regular */
+  font-weight: 400;
   color: #787D9C;
   margin-top: 4px;
 }
@@ -67,7 +176,7 @@
 /* Right side: psf */
 .psf {
   font-size: 19px;
-  font-weight: 600;  /* Demi Bold */
+  font-weight: 600;
   color: #1A2258;
   margin: 0;
   text-align: right;
@@ -76,35 +185,34 @@
 /* Subprice label, placed below psf */
 .subprice_label {
   font-size: 14px;
-  font-weight: 400;  /* Regular */
+  font-weight: 400;
   color: #787D9C;
   margin-top: 4px;
   text-align: right;
 }
 
 /* Brief description below the header */
-
-
 .brief_desc {
   font-size: 16px;
-  font-weight: 400;  /* Regular */
+  font-weight: 400;
   color: #1A2258;
   margin-bottom: 4px;
   margin-top: 0px;
 }
 
-/* Move "See description" button to the right and align with header */
+/*See Description container */
 .button-container {
   display: flex;
   justify-content: flex-end;
 }
 
+/*Button styling */
 button {
   background-color: transparent;
   border: none;
   color: #2979ff;
-  font-weight: 600;  /* Demi bold */
-  font-size: 16px;  /* Font size 16px */
+  font-weight: 600;
+  font-size: 16px;
   cursor: pointer;
   margin-top: 8px;
 }
@@ -118,17 +226,17 @@ button {
 }
 
 .description-container.show {
-  height: auto; /* Allow the content to take its full height */
+  height: auto;
   opacity: 1;
 }
 
-/* Description text - preserve spaces and line breaks */
+/* Description text*/
 .description-text {
   font-size: 14px;
   font-weight: 400;
   color: #1A2258;
   padding: 8px 0;
-  white-space: pre-wrap; /* This ensures that spaces and line breaks are preserved */
+  white-space: pre-wrap;
 }
 
 /* Style for clickable phone numbers */
@@ -137,7 +245,47 @@ button {
   cursor: pointer;
 }
 
-/* To make the App height dynamic */
-.App {
-  height: auto;
+/* =====================    MEDIA QUERIES (SMALL DEVICES) ================= */
+@media screen and (max-width: 600px) {
+  .App {
+    width: 343px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .psf {
+    font-size: 16px;
+  }
+
+  .subdetails {
+    font-size: 12px;
+  }
+
+  .subprice_label {
+    font-size: 12px;
+  }
+
+  .brief_desc {
+    font-size: 14px;
+  }
+
+  .header-right {
+    display: none;
+  }
+  .header-right-mobile {
+    display: flex;
+    margin-top: 16px;
+    gap: 12px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+
+  .description-text {
+    font-size: 12px;
+  }
+
 }

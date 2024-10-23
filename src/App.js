@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./styles.css";
 
 export default function ListingAd({
@@ -15,8 +15,15 @@ export default function ListingAd({
   ownership_type,
   description,
 }) {
-  const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
+  // useState for description and phone number
+  const [isDescriptionVisible, setIsDescriptionVisible] = useState(true); // Start with true for SEO
   const [revealedNumbers, setRevealedNumbers] = useState({});
+
+  // Hide description after page load
+  useEffect(() => {
+    // This will run after the page has loaded and component is mounted
+    setIsDescriptionVisible(false);
+  }, []);
 
   // Toggle the visibility of the description
   const toggleDescriptionVisibility = () => {
@@ -42,8 +49,9 @@ export default function ListingAd({
 
   // Function to render the description with anonymized phone numbers
   const renderDescription = (text) => {
+    
     // Updated regex to match numbers with or without spaces
-    const phoneRegex = /8\d{3} ?\d{4}/g; // Matches both 82345678 and 8234 5678
+    const phoneRegex = /8\d{3} ?\d{4}/g;
     const parts = text.split(phoneRegex);
     const matches = text.match(phoneRegex);
 
@@ -72,9 +80,16 @@ export default function ListingAd({
 
   return (
     <div className="App">
-      <img className="mainPic" width="300" height="500" src={pic} alt="Main" />
+      <div className="ribbon">LAUNCHING SOON</div>
+      <div className="carousel-container">
+        <div className="arrow left-arrow"></div>
+        <div className="arrow right-arrow"></div>
+        <img className="mainPic" width="300" height="500" src={pic} alt="Main" />
+      </div>
+
       <div className="mainContent">
         <div className="header">
+          
           {/* Left part: building icon, title, and address */}
           <div className="header-left">
             <img className="buildingIcon" src={building_icon} alt="Building Icon" />
@@ -85,7 +100,7 @@ export default function ListingAd({
           </div>
 
           {/* Right part: psf and subprice_label */}
-          <div>
+          <div className="header-right">
             <h2 className="psf">${psf_min} - ${psf_max} psf</h2>
             <p className="subprice_label">{subprice_label}</p>
           </div>
@@ -97,6 +112,12 @@ export default function ListingAd({
             {project_type} · {year} · {ownership_type}
           </h3>
           <h3 className="brief_desc">{availabilities_label}</h3>
+        </div>
+
+          {/* Mobile layout for psf and subprice_label */}
+        <div className="header-right-mobile">
+          <h2 className="psf">${psf_min} - ${psf_max} psf</h2>
+          <p className="subprice_label">{subprice_label}</p>
         </div>
 
         {/* See description button container */}

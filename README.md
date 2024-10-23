@@ -1,38 +1,99 @@
-# A Challenge
+# My Answer For The Test
 
-Hello and thanks for trying out with us!
+Hello teams 99.co!
 
-You will find here a few tests. These are composed of some basic yet bit challenging problems we've had to solve on the job.
-This will also allow you to have a glimpse of what we work on at 99.co and see if that's interesting to you.
-Finally, this'll provide us with insights on your working style.
+My name is M. Adib Aulia Nurkhafif and you can call me Adib, first of all thank you very much for giving me chance to proceed the challenge of front-end developer internship program, it's very close for being a part of 99.co team!
 
-## Submission
+Here is my answers based on all the challenge questions!
 
-You have 7 days to complete the challenge.
-
-Please fork this (from within [CodeSandbox link here](https://codesandbox.io/s/github/alexbiediger/frontend-test)) and once you complete, send us back the forked CodeSandbox link to rupert@99.co and try.wijono@99.co 
+## Submission Links:
+CodeSandbox: my codesandbox fork
+Github: my github fork repository
 
 ## Questions
 
 ### React
+  1. Hide description until the button is clicked
+     - This is controlled by the **[useState]** hook **[isDescriptionVisible]**, which tracks whether the description is shown or hidden.
+     - Initially, **[isDescriptionVisible]** is set to true for SEO, making the description visible when the page is first rendered.
+     - The button toggles this state **[toggleDescriptionVisibility]** function, allowing the user to hide or show the description. The description section's visibility is toggled by applying a show class dynamically in the description-container div.
+    
+  2. Hide description only after page load (SEO concern)
+     - This is achieved by setting isDescriptionVisible to true initially.
+     - After the page fully loads, the description is hidden by using the useEffect hook:
+       ```bash
+       useEffect(() => {
+          setIsDescriptionVisible(false);
+        }, []);
+       ```
+     - This **[useEffect]** runs only once after the page has loaded, hiding the description from the user but keeping it visible initially for SEO purposes.
 
-1. Hide description until the button is clicked
-
-2. Because of SEO we want to only hide description after page load
-
-3. Anonymize all phone numbers: first 4 numbers visible, replace following 4 with X (e.g. 8111 XXXX or 8123 XXXX)
-   Note Singapore phone number format is always 8 numbers long.
-   See [Number Ranges on wikipedia](https://en.wikipedia.org/wiki/Telephone_numbers_in_Singapore#Number_ranges) for precise rules.
-
-4. Line returns (new lines) in the description text should be displayed on page. The text must NOT be all in one line.
-
-5. Clicking on phone number reveals the real number
-
-
-
+  3. Anonymize all phone numbers (show first 4 digits, replace last 4 with X)
+     - The function **[anonymizePhoneNumber]** handles the anonymization by showing only the first four digits and replacing the last four with xxxx.
+       ```bash
+         const anonymizePhoneNumber = (phoneNumber) => {
+        // Replace the space if it exists between the digits
+        if (phoneNumber.includes(" ")) {
+          return phoneNumber.slice(0, 5) + "xxxx"; // Keep the space after 4 digits
+        }
+        return phoneNumber.slice(0, 4) + " xxxx"; // Anonymize without space
+        };
+      
+        // Function to toggle phone number visibility
+        const togglePhoneNumber = (phoneNumber) => {
+          setRevealedNumbers((prevState) => ({
+            ...prevState,
+            [phoneNumber]: !prevState[phoneNumber],
+          }));
+        };
+        ```
+     - It correctly handles both formats of phone numbers: with or without a space in the middle (e.g., 8234 5678 and 82345678).
+     - This function is used in the **[renderDescription]** function to replace the last 4 digits of phone numbers in the description.
+       ```bash
+       // Function to render the description with anonymized phone numbers
+        const renderDescription = (text) => {
+          // Updated regex to match numbers with or without spaces
+          const phoneRegex = /8\d{3} ?\d{4}/g; // Matches both 82345678 and 8234 5678
+          const parts = text.split(phoneRegex);
+          const matches = text.match(phoneRegex);
+        ```
+     4. Display new lines in the description text (not in one line)
+        - To preserve the line breaks (new lines) in the description, the CSS rule **white-space: pre-wrap;** is applied to the **.description-text** class:
+          ```bash
+          .description-text {
+            white-space: pre-wrap;
+          }
+          ```
+        - This ensures that any line breaks or extra spaces in the description are maintained and displayed as they are.
+      5. Clicking on the phone number reveals the real number
+         - When a phone number is clicked, the **[togglePhoneNumber]** function is triggered.
+         - The phone number is revealed or re-anonymized based on the **[revealedNumbers]** state, which tracks whether each phone number is currently revealed or anonymized.
+         - The phone numbers are wrapped in **<span>** tags with an **[onClick]** event, making them interactive:
+           ```bash
+           <span
+              key={i}
+              className="phone-number"
+              onClick={() => togglePhoneNumber(phoneNumber)}
+            >
+              {isRevealed ? phoneNumber : anonymizePhoneNumber(phoneNumber)}
+            </span>
+           ```
+           
 ### Styling
+  1. Main image optimization (too heavy)
+     To reduce main image in this test we can **Reduce Image Width/Quality**
 
-1. Implement the [following design](https://www.figma.com/file/zT67hKBce1jfyZPkx5cGrg/FE-challenge---Project-card-design).
-   Note: you will have to register on Figma if you don't already have an account
+     On the URL given, we can modify the **w** and **q** for the image,
+     - "w" is stand for width: how wide your image will be
+     - "q" is stand for quality: how good your output image quality will be
 
-2. Main pic is too heavy, please suggest ways to reduce its weight.
+     url:
+     ```bash
+     https://images.prismic.io/99-content/dc1594fb-f413-44ff-b8b5-c3ba6cd539cd_vbWkNuxt2hjgidVttoMRDX.jpg?auto=compress,format&w=2000&q=100
+     ```
+     For example, the **width** of this image is 2000
+     meanwhile it's **quality** is 100
+
+     - We can easily modify by just edit the url on **'w'** and **'q'**
+     - We can make the image more width, but more less quality, or make it smaller width but with high quality
+     
